@@ -5,3 +5,4 @@ node_modules
 *.vsix
 __pycache__
 .env
+.google-cookie

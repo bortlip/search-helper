@@ -22,9 +22,9 @@ USER_ROLE = "user"
 FILENAME_PREFIX = "gpt35_session"
 
 answerer_prompt = """
-Persona:
 I am a professional report writer. I am preparing a professional report.
 I will answer the question or topic with the provided context as completely as possible.
+** ALWAYS: Use inline references for everything using markdown link notation ONLY with the url provided in the context. IE. [[1](URL)] 
 """
 
 def answer_query(info, gpt_question):
@@ -33,13 +33,15 @@ Answer the question using the context taken from the provided URLs.
 Be as thorough as possible.  Include as many details as possible.
 
 Only cite the urls provided before the article text listed as ---- url: URL
-Use inline references for everything using markdown link notation ONLY with the url provided in the context. IE. [[1](URL)] 
-All facts must be cited
+*** ALWAYS *** include an ***inline*** reference in markdown link notation using the URL provided in the context for any information that is not common knowledge or is taken from a specific source.
+Use the format [[1](URL)] for each reference and ensure that all facts are cited.
 List all cites at the end in BOTH markdown link notation AND text.
 
 Create a report in markdown, using bold, italics, tables, headings, sections, titles, etc where appropriate to ease reading.
 Be very professional with the markdown formatting.
 Give it a title and a brief description.
+
+THE REFERENCES MUST ALSO BE IN THE MAIN TEXT!!!
 
 Query: 
 {gpt_question}
@@ -55,13 +57,11 @@ Context:
     response = summaryAgent.step_session()
     return response
 
-
-
 ###  Start of main program ###
 
-search_query = "What are the technical details of GPT-4?"
+search_query = "pause giant ai experiments open letter elon musk"
 num_search_results = 10
-gpt_question = "What are the technical details of GPT-4"
+gpt_question = "What is going on with this open letter about pausing AI?"
 section_size = 200
 word_length = 2000
 
