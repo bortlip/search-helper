@@ -71,6 +71,9 @@ def searchGoogle_getUrls(query, num_results):
 
             # Loop through each result URL and add it to the set
             for url in results:
+                if url.endswith(".pdf"):
+                    continue
+                
                 # Remove any anchor tags from the URL (i.e., anything after the # character)
                 url = url.split('#')[0]
                 # Add the URL to the set
